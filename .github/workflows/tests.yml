@@ -27,3 +27,16 @@ jobs:
       - name: Run Docker Tests
         run: make docker-test
         shell: bash
+
+  cloud-auth:
+    needs: test
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+    uses: danielaauriema/cloud-utils/.github/workflows/docker-publish.yml@main
+    with:
+      context: ./docker/openldap
+      dockerfile: ./docker/openldap/Dockerfile
+      image_name: openldap
+    secrets: inherit
