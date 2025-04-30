@@ -22,9 +22,9 @@ print_header "Cloud Auth Integration Test"
 
 print_header "Build Images"
 
-#print_section "pull and build Docker Compose images"
-#docker compose pull
-#docker compose build --no-cache
+print_section "pull and build Docker Compose images"
+docker compose pull
+docker compose build --no-cache
 
 print_section "start containers"
 docker compose up -d
@@ -36,7 +36,7 @@ docker compose up -d
 print_header "OpenLdap :: test ldap from localhost"
 
 test_label "Wait for configuration"
-test_wait_for docker exec -t test_openldap test -f /data/init
+test_wait_for docker exec -t test_openldap test -f /openldap/init
 
 test_label "OpenLdap :: Who Am I with LDAPI :: admin"
 test_assert docker exec -t test_openldap ldapwhoami -H ldapi:/// -D "cn=admin,${LDAP_BASE_DN}" -w adm1234
