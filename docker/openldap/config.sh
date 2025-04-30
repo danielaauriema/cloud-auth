@@ -37,7 +37,7 @@ chmod -R ugo+rw "${LDAP_DATA_PATH}"
 
 _log "change LDAP config and data paths"
 
-mv "/etc/ldap/slapd.d/" "${LDAP_CONF_PATH}"
+cp -R "/etc/ldap/slapd.d/" "${LDAP_CONF_PATH}"
 
 slapmodify -b "cn=config" -F "${LDAP_CONF_PATH}" <<EOF
 dn: olcDatabase={1}mdb,cn=config
