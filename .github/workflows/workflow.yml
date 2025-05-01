@@ -20,6 +20,11 @@ jobs:
       id-token: write
 
     steps:
+      - name: username
+        run: echo $USER
+        shell: bash
+
+
       - name: Checkout repository
         uses: actions/checkout@v4
 
